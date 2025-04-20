@@ -87,11 +87,6 @@
   </style>
 </head>
 <body>
-  <audio id="bgMusic" controls>
-    <source src="audios/On Melancholy Hill" type="audio/mp3">
-    Seu navegador não suporta áudio.
-  </audio>
-
   <div class="hearts"></div>
   <div class="broken-hearts"></div>
   <div class="insults"></div>
@@ -119,17 +114,6 @@
   </div>
 
   <script>
-    const audio = document.getElementById('bgMusic');
-    audio.volume = 0;
-
-    // Fade-in suave da música ao entrar
-    const fadeIn = setInterval(() => {
-      if (audio.volume < 0.9) {
-        audio.volume = Math.min(audio.volume + 0.01, 1);
-      } else {
-        clearInterval(fadeIn);
-      }
-    }, 200);
 
     function criarElemento(tipo, classe, texto, container) {
       const el = document.createElement('div');
@@ -156,16 +140,6 @@
           setTimeout(() => criarElemento('div', 'heart', '💖', document.querySelector('.hearts')), i * 50);
         }
       } else {
-        // Música diminui até parar, criando o climão
-        const fadeOut = setInterval(() => {
-          if (audio.volume > 0.01) {
-            audio.volume = Math.max(audio.volume - 0.02, 0);
-          } else {
-            clearInterval(fadeOut);
-            audio.pause();
-          }
-        }, 200);
-
         for (let i = 0; i < 50; i++) {
           setTimeout(() => criarElemento('div', 'broken-heart', '💔', document.querySelector('.broken-hearts')), i * 100);
           setTimeout(() => criarElemento('div', 'insult', insultos[Math.floor(Math.random() * insultos.length)], document.querySelector('.insults')), i * 200);
