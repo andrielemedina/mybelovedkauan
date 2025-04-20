@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💖💌 Para o Kauan 💌💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: 'Times', serif;
+      overflow: hidden;
+    }
+    .container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    h1 {
+      color: #821d2f;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    input {
+      width: 200px;
+    }
+    button {
+      background-color: #821d2f;
+      color: #fff;
+      cursor: pointer;
+    }
+    .hearts, .broken-hearts, .insults {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .heart, .broken-heart, .insult {
+      position: absolute;
+      font-size: 24px;
+      animation: float 5s linear infinite;
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(0.5);
+        opacity: 0;
+      }
+    }
+    .love-message {
+      padding: 30px;
+      font-size: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+      display: none;
+    }
+    .love-message h2 {
+      font-family: 'Times', serif;
+      font-size: 36px;
+      color: #821d2f;
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts"></div>
+  <div class="broken-hearts"></div>
+  <div class="insults"></div>
+  
+  <div class="container">
+    <h1>Você ama eu?</h1>
+    <button onclick="responder(true)">Sim</button>
+    <button onclick="responder(false)">Não</button>
+  </div>
+
+  <div class="love-message" id="loveMessage">
+    <p>meu amor, eu não consigo descrever o quanto você é importante pra mim.</p>
+    <p>você é incrível, forte, determinado, e mesmo nos dias difíceis do quartel, você continua sendo meu herói.</p>
+    <p>eu admiro demais tua coragem, teu esforço, e mesmo com a distância ou cansaço, o meu amor por ti só aumenta.</p>
+    <p>estarei contigo em cada passo, em cada escolha, apoiando com todo meu coração.</p>
+    <p>você é lindo, inteligente, maravilhoso... um verdadeiro presente na minha vida!</p>
+    <p>agradeço imensamente para Deus todos os dias por ele ter lhe convidado a compartilhar a vida comigo.</p>
+    <p>você faz os meus dias melhores, só de ver você sorrindo o meu peito já arde em amor.</p>
+    <p>que nada nesse mundo seja capaz de impedir o nosso amor, e que tudo nos permita amar com intensidade!.</p>
+    <p>passar os dias com você é mágico, seja passeando, comendo, dormindo(nem tanto, você sabe), agarrados, moteeeeel...</p>
+    <p>apesar de tudo, meu amor por você só cresce.</p>
+    <p>me desculpa por ser complicada, é a minha primeira vez vivendo.</p>
+    <p>nunca se esqueça: você é capaz de superar qualquer desafio. eu acredito em ti!</p>
+    <h2>Eu te amo, Kauan! 💖 </h2>
+  </div>
+
+  <script>
+    function criarElemento(tipo, classe, texto, container) {
+      const el = document.createElement('div');
+      el.classList.add(classe);
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.top = Math.random() * 100 + 'vh';
+      el.textContent = texto;
+      container.appendChild(el);
+      setTimeout(() => el.remove(), 5000);
+    }
+
+    function flutuarCoracoes() {
+      setInterval(() => criarElemento('div', 'heart', '💖', document.querySelector('.hearts')), 300);
+    }
+
+    flutuarCoracoes();
+
+    function responder(amor) {
+      document.querySelector('.container').style.display = 'none';
+      if (amor) {
+        document.getElementById('loveMessage').style.display = 'block';
+        for (let i = 0; i < 100; i++) {
+          setTimeout(() => criarElemento('div', 'heart', '💖', document.querySelector('.hearts')), i * 50);
+        }
+      } else {
+        for (let i = 0; i < 50; i++) {
+          setTimeout(() => criarElemento('div', 'broken-heart', '💔', document.querySelector('.broken-hearts')), i * 100);
+          setTimeout(() => criarElemento('div', 'insult', insultos[Math.floor(Math.random() * insultos.length)], document.querySelector('.insults')), i * 200);
+        }
+      }
+    }
+
+    const insultos = [
+      'aff',
+      'seu idiota',
+      'vai pro inferno, Kauan',
+      'como ousa?',
+      'que falta de consideração',
+      'inacreditável',
+      'babaca',
+      'fdp',
+      'imbecil do caralho',
+      'te odeio sua mula',
+      'morre',
+      'respira nao babaca',
+      'te odeio',
+      'rude demais!'
+    ];
+  </script>
+</body>
+</html>
